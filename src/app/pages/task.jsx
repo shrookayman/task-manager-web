@@ -196,7 +196,7 @@ const Task = () => {
         </div>
       )}
       {tasks?.length > 0 && (
-        <div className="d-flex justify-content-between mt-3">
+        <div className="d-flex justify-content-between mt-3 mb-5">
           <button
             className="btn btn-secondary"
             disabled={page === 1}
