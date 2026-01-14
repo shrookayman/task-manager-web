@@ -6,7 +6,7 @@ import {
   deleteTask,
 } from "../services/task.service";
 import LogoutButton from "./../components/ui/LogoutButton";
-import {TaskStatus, allowedTransitions} from '../utils/constants'
+import {TaskStatus, allowedTransitions, statusColors} from '../utils/constants'
 
 const Task = () => {
   const [tasks, setTasks] = useState([]);
@@ -169,8 +169,22 @@ const Task = () => {
                       value={task.status}
                       onChange={(e) => handleStatusChange(task.id, e.target.value)}
                       className="form-select w-100"
-                    >
-                      <option value={task.status}>{task.status}</option>
+                      style={{
+                          backgroundColor:
+                            task.status === TaskStatus.PENDING
+                              ? "#faf1d4"
+                              : task.status ===TaskStatus.IN_PROGRESS
+                              ? "#b3ccf0"
+                              : task.status === TaskStatus.DONE
+                              ? "#a4d4bf"
+                              : "white",
+                          color: "#000000", 
+                          fontWeight: "600",
+                        }}
+                      >
+                      <option value={task.status}>
+                          {task.status}
+                        </option>
 
                       {allowedTransitions[task.status].map((status) => (
                         <option key={status} value={status}>
