@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { login } from '../../services/auth.service';
+import { Link } from 'react-router-dom';
+import { EMAIL_REGEX } from '../../utils/constants';
 
 const LoginForm = () => {
   const [form, setForm] = useState({
@@ -16,7 +18,7 @@ const LoginForm = () => {
 
     if (!form.email) {   
       newErrors.email = 'Email is required ';
-    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(form.email)) {
+    } else if (!(EMAIL_REGEX).test(form.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
 
@@ -52,6 +54,7 @@ const LoginForm = () => {
       });
 
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
       window.location.href = '/task';
     } catch (err) {
       setServerError(err.response?.data?.message || 'Login failed');
@@ -103,6 +106,13 @@ const LoginForm = () => {
       >
         {loading ? 'Logging in...' : 'Login'}
       </button>
+
+      <div className="text-center mt-3">
+      <span className="text-muted">Don’t have an account?</span>{' '}
+        <Link to="/register" className="fw-semibold">
+          Create new account
+        </Link>
+      </div>
     </form>
   );
 };

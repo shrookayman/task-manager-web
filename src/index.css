@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.header-bar {
+  flex-wrap: nowrap; 
+}
+
+.greeting-text {
+  font-size: 1.7rem; 
+  white-space: nowrap; 
+  font-weight: bold;
+}
+
+
+.header-bar button {
+  font-size: 1rem;
+  padding: 4px 8px;
+}
