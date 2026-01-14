@@ -1,11 +1,10 @@
-import axios from 'axios';
 import api from './../interceptor/interceptor';
 
 const API_URL = 'http://localhost:3001/api'; 
 
 // Get all tasks
-export const getTasks = (token) => {
-  return api.get(`${API_URL}/task`, { headers: { Authorization: `Bearer ${token}` } });
+export const getTasks = (token, page = 1, limit = 5) => {
+  return api.get(`${API_URL}/task?page=${page}&limit=${limit}`, { headers: { Authorization: `Bearer ${token}` } });
 };
 
 // Add a new task

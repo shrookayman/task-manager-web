@@ -6,6 +6,7 @@ import {
   deleteTask,
 } from "../services/task.service";
 import LogoutButton from "./../components/ui/LogoutButton";
+import {TaskStatus, allowedTransitions} from '../utils/constants'
 
 const Task = () => {
   const [tasks, setTasks] = useState([]);
@@ -14,13 +15,18 @@ const Task = () => {
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user"));
   const [titleError, setTitleError] = useState("");
+  // pagination
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const limit = 5;
 
-  // Fetch tasks
-  const fetchTasks = async () => {
+  const fetchTasks = async (pageNumber) => {
     setLoading(true);
     try {
-      const res = await getTasks(token);
-      setTasks(res.data);
+      const res = await getTasks(token, pageNumber, limit);
+      setTasks(res.data.tasks);
+      setPage(res.data.page); 
+      setTotalPages(res.data.totalPages);
     } catch (err) {
       console.error(err);
     } finally {
@@ -65,7 +71,7 @@ const Task = () => {
     }
   };
 
-  // Update status
+ 
   const handleStatusChange = async (taskId, status) => {
     try {
       await updateTaskStatus(taskId, status, token);
@@ -95,8 +101,7 @@ const Task = () => {
           <LogoutButton />
         </div>
 
-        <hr className="header-divider"/>
-        {/* Your task form and table */}
+        <hr className="header-divider" />
       </div>
       <h4 class="mt-5">Add New Task</h4>
       <form onSubmit={handleAddTask} className="mb-4">
@@ -136,15 +141,13 @@ const Task = () => {
       </form>
       <h4>My To Do List</h4>
 
-      {/* Task List */}
       {loading ? (
         <p>Loading tasks...</p>
-      )  : tasks.length === 0 ? (
+      ) : tasks.length === 0 ? (
         <div className="alert text-center">
-          No tasks found. Start by adding a new task 
+          No tasks found. Start by adding a new task
         </div>
-      )
-      : (
+      ) : (
         <div className="table-responsive">
           <table className="table table-bordered">
             <thead>
@@ -164,16 +167,19 @@ const Task = () => {
                   <td>
                     <select
                       value={task.status}
-                      onChange={(e) =>
-                        handleStatusChange(task.id, e.target.value)
-                      }
+                      onChange={(e) => handleStatusChange(task.id, e.target.value)}
                       className="form-select w-100"
                     >
-                      <option value="Pending">Pending</option>
-                      <option value="In Progress">In Progress</option>
-                      <option value="Done">Done</option>
+                      <option value={task.status}>{task.status}</option>
+
+                      {allowedTransitions[task.status].map((status) => (
+                        <option key={status} value={status}>
+                          {status}
+                        </option>
+                      ))}
                     </select>
                   </td>
+
                   <td>{new Date(task.createdAt).toLocaleString()}</td>
                   <td>
                     <button
@@ -187,6 +193,25 @@ const Task = () => {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+      {tasks?.length > 0 && (
+        <div className="d-flex justify-content-between mt-3">
+          <button
+            className="btn btn-secondary"
+            disabled={page === 1}
+            onClick={() => fetchTasks(page - 1)}
+          >
+            Previous
+          </button>
+          <div>Page #{page}</div>
+          <button
+            className="btn btn-secondary"
+            disabled={page === totalPages}
+            onClick={() => fetchTasks(page + 1)}
+          >
+            Next
+          </button>
         </div>
       )}
     </div>
