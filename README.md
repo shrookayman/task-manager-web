@@ -1,23 +1,7 @@
 
 ## Screenshots
 
-**Login Page**
-![Login Page](screenshots/login.png)
-
-**Register Page**
-![Register Page](screenshots/registeration-page.png)
-
-**Task List / Task List 1**
-![Task List 1](screenshots/task-list-page1.png)
-
-**Task List / Task List 2**
-![Task List 2](screenshots/task-list-page2.png)
-
-**Task List / Empty Task List **
-![Empty Task List](screenshots/empty-task-list.png)
-
-**Task List / Success After Regestration **
-!Success After Regestration](screenshots/success-after-registration.png)
+<img width="1920" height="1080" alt="task-list-page1" src="https://github.com/user-attachments/assets/c4bc0431-f866-46ea-8324-b4016efbd36f" />
 
 
 
