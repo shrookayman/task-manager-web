@@ -1,9 +1,17 @@
-
 ## Screenshots
+<img width="1920" height="1080" alt="task-list-page2" src="https://github.com/user-attachments/assets/07542110-b2a4-4e7d-bf8b-24b526b4e704" />
 
 <img width="1920" height="1080" alt="task-list-page1" src="https://github.com/user-attachments/assets/c4bc0431-f866-46ea-8324-b4016efbd36f" />
 
+<img width="1920" height="1080" alt="task-list-page2" src="https://github.com/user-attachments/assets/c457d505-f8cd-454e-8f1f-c5837fae5b14" />
+<img width="1920" height="1080" alt="login-pag" src="https://github.com/user-attachments/assets/b18c2ec7-46a2-4eb5-aef6-36f3e562f416" />
+<img width="1920" height="1080" alt="registeration-page" src="https://github.com/user-attachments/assets/0290db9c-a5cc-45ec-bccd-f13c7127226e" />
 
+
+<img width="1920" height="1080" alt="success-after-registration" src="https://github.com/user-attachments/assets/364f7f05-d8a1-435e-96bb-e7faaf3b7bc3" />
+
+
+<img width="1920" height="1080" alt="empty-task-list" src="https://github.com/user-attachments/assets/b7e79a4a-90a5-4c2a-b0d9-aabaafd88c29" />
 
 
 # Getting Started with Create React App
